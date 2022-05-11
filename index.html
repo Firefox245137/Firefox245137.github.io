@@ -1,22 +1,33 @@
 <!DOCTYPE html>
 <html>
-
 <head>
-    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <link rel="stylesheet" href="../assets/css/materialize.css" media="screen,projection">
-
-    <link rel="shortcut icon" type="image/x-icon" href="../assets/images/logos/icon_vr_club.ico">
-
-    <title>Home</title>
-
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="styles.css">
+    <title>Testing</title>
+    <script src="pixi.js"></script>
 </head>
 
 <body>
-  <h1>Beans</h1>
-  wtf
-</body>
+    <h1>Colorful board test omega wow</h1>
+    <div class="buttons">
+        <button class="button1" type="button" onclick="uhreset()">Reset board</button>
+        <button type="button" onclick="setRandom()">Animation</button>
+    </div>
+    
+    <script type="text/javascript" src="app.js">
+        let type = "WebGL";
+        if (!PIXI.utils.isWebGLSupported()) {
+            type = "canvas";
+        }
+    </script>
+    <script>
+        function uhreset(){
+            reset();
+        }
 
+        function setRandom(){
+            animate = !animate;
+        }
+    </script>
+</body>
 </html>
