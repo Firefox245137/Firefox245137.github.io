@@ -9,6 +9,12 @@ const app = new PIXI.Application({width: 601, height: 601});
 
 document.body.appendChild(app.view);
 
+let currdate = new Date();
+let seed = currdate.getTime();
+function random(){
+    let x = Math.sin(seed++) * 10000;
+    return x - Math.floor(x);
+}
 
 let board = [], turnedOn = [];
 let gridSize = 10, gridPx = 600/gridSize;
@@ -31,7 +37,6 @@ function setup(){
         board[i].on('mousedown', clickFunc);
         app.stage.addChild(board[i]);
     }
-
     
     app.ticker.add((delta) => gameLoop(delta));
 }
@@ -45,7 +50,7 @@ function clickFunc(e){
     console.log('X', x, 'Y', y);
     // console.log(board[x][y]);
     console.log(x*gridPx, y*gridPx);
-    board[y*gridSize + x].beginFill(Math.floor(Math.random() * 0xFFFFFF));
+    board[y*gridSize + x].beginFill(Math.floor(random() * 0xFFFFFF));
     board[y*gridSize + x].drawRect(x*gridPx + 1, y*gridPx, gridPx, gridPx);
     board[y*gridSize + x].endFill();
 }
@@ -53,7 +58,7 @@ function clickFunc(e){
 
 function gameLoop(delta){
     if(animate){
-        let x = Math.floor(Math.random()*10), y = Math.floor(Math.random()*10);
+        let x = Math.floor(Math.random()*10), y = Math.floor(random()*10);
         board[y*gridSize + x].beginFill(Math.floor(Math.random() * 0xFFFFFF));
         board[y*gridSize + x].drawRect(x*gridPx + 1, y*gridPx, gridPx, gridPx);
         board[y*gridSize + x].endFill();
