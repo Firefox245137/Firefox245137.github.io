@@ -1,17 +1,10 @@
 body {
     display: flex;
     justify-content: center;
-    align-items: left;
+    align-items: center;
     flex-direction: column;
+    height: 90vh;
 }
-
-/* #grad {
-    background-image: linear-gradient(red, yellow);
-} */
-
-/* div {
-    background: linear-gradient(to bottom, #99ccff 36%, #cc00cc 100%);
-} */
 
 .buttons{
     justify-content: center;

@@ -5,7 +5,6 @@ const TextureCache = PIXI.utils.TextureCache;
 const Graphics = PIXI.Graphics;
 
 const app = new PIXI.Application({width: 600, height: 600});
-// app.renderer.backgroundColor = 0xFFFFFF;
 
 
 document.body.appendChild(app.view);
