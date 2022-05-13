@@ -2,19 +2,20 @@
 <html>
 <head>
     <meta charset="utf-8">
-    <link rel="stylesheet" href="invertstyles.css">
-    <title>Invert</title>
+    <link rel="stylesheet" href="connect4styles.css">
+    <title>Connect 4</title>
     <script src="../pixi/pixi.js"></script>
+    <script src="../sound/howler.js"></script>
 </head>
 
 <body>
-    <h1>Invert</h1>
+    <h1>Connect 4</h1>
     <div class="buttons">
         <button class="button1" type="button" onclick="uhreset()">Reset board</button>
-        <button type="button" onclick="setRandom()">Randomize board</button>
+        <button type="button" onclick="setRandom()">Animation</button>
     </div>
     
-    <script type="text/javascript" src="invert.js">
+    <script type="text/javascript" src="connect4.js">
         let type = "WebGL";
         if (!PIXI.utils.isWebGLSupported()) {
             type = "canvas";
@@ -23,11 +24,11 @@
     <a href="../index.html">Back to home</a>
     <script>
         function uhreset(){
-            reset(false);
+            reset();
         }
 
         function setRandom(){
-            reset(true);
+
         }
     </script>
 </body>

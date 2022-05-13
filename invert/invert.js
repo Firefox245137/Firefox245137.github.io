@@ -24,7 +24,7 @@ function random(){
 
 
 let board = [], turnedOn = [];
-let gridSize = 10, gridPx = 600/gridSize, spams = 20;
+let gridSize = 10, gridPx = 600/gridSize, spams = 1;
 let animate = false;
 
 loader
@@ -54,10 +54,10 @@ function setup(){
     const style = new PIXI.TextStyle({
         fontFamily: "Futura",
         fontSize: 64,
-        fill: "white"
+        fill: "white",
       });
-    message = new PIXI.Text("The End!", style);
-    message.x = 120;
+    message = new PIXI.Text("You win!", style);
+    message.x = app.stage.width / 2 - message.width/2;
     message.y = app.stage.height / 2 - 32;
     gameOver.addChild(message);
     
