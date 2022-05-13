@@ -24,7 +24,7 @@ function random(){
 
 
 let board = [], turnedOn = [];
-let gridSize = 10, gridPx = 600/gridSize, spams = 1;
+let gridSize = 10, gridPx = 600/gridSize, spams = 25;
 let animate = false;
 
 loader
