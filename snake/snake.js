@@ -14,7 +14,7 @@ function random(){
     return x - Math.floor(x);
 }
 
-const style = new PIXI.TextStyle({
+let style = new PIXI.TextStyle({
     fontFamily: "Futura",
     fontSize: 64,
     fill: "white",
@@ -62,6 +62,7 @@ loader
 
 function setup(){    
     app.renderer.backgroundColor = 0xFFFFFF;
+    style.fontSize = app.renderer.height/8;
     for(i=0; i<gridSize+1; i++){
         board.push(new Graphics());
         board[i].lineStyle({width: 1, color: 0x000000, alpha: 1});
@@ -133,7 +134,7 @@ function gameLoop(){
         gameScene.visible = false;
         gameOver.visible = true;
     }else{
-        if(++frameTicker%7!=0)
+        if(++frameTicker%6!=0)
             return;
         frameTicker = 0;
         if(dirBuffer.length > 0){
@@ -192,9 +193,8 @@ function adjustPos(){
         playerY.push(lastY);
 
     }
-    if(playerX[0] >= gridSize || playerX[0] < 0 || playerY[0] >= gridSize || playerY[0] < 0 || checkSelfKill()){
+    if(playerX[0] >= gridSize || playerX[0] < 0 || playerY[0] >= gridSize || playerY[0] < 0 || checkSelfKill())
         endCheck = true;
-    }
 }
 
 function checkSelfKill(){
