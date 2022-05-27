@@ -1,0 +1,26 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+}
+
+.buttons{
+    justify-content: center;
+    display: flex;
+    /* flex: auto; */
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.forms{
+    justify-content: center;
+    display: flex;
+    flex-direction: row;
+    margin-top: 5px;
+}
+
+.margright{
+    margin-right: 5px;
+}

@@ -17,6 +17,7 @@ function random(){
 let board = [], turnedOn = [];
 let gridSizeX = 7, gridSizeY = 6, gridPx = 60;
 let redTurn = true, win = 0;
+let flash, bg;
 
 const app = new PIXI.Application({width: gridSizeX*gridPx + 1, height: gridSizeY*gridPx + 1});
 let gameScene = new Container();
@@ -33,13 +34,13 @@ loader
 
 function setup(){   
 
-    let bg = new Graphics();
+    bg = new Graphics();
     bg.lineStyle({width: 1, color: 0x000000, alpha: 1});
     bg.beginFill(0x0000FF);
     bg.drawRect(1, 0, app.renderer.width-1, app.renderer.height);
     bg.endFill();
     gameScene.addChild(bg);
-    let flash = new Graphics();
+    flash = new Graphics();
     flash.lineStyle({width: 1, color: 0x000000, alpha: 1});
     flash.beginFill(0x000000);
     flash.drawRect(1, 0, app.renderer.width-1, app.renderer.height);
@@ -60,13 +61,13 @@ function setup(){
         gameScene.addChild(board[i]);
     }
 
-    app.ticker.add((delta) => gameLoop(delta));
+    app.ticker.add(gameLoop);
 }
 
 function clickFunc(e){
     
-    // console.log('Mouse clicked ');
-    // console.log('X', e.data.global.x, 'Y', e.data.global.y);
+    if(win > 0)
+        return;
     let x = Math.floor(e.data.global.x/gridPx);
     let y = Math.floor(e.data.global.y/gridPx);
     let pos = y*gridSizeX + x;
@@ -76,8 +77,6 @@ function clickFunc(e){
         if(turnedOn[pos+gridSizeX] > 0)
             break;
     }
-    // console.log('X', x, 'Y', y);
-    // console.log(x*gridPx, y*gridPx);
     let color;
     if(redTurn){
         color = 0xFF0000;
@@ -153,7 +152,7 @@ function checkWin(x, y){
 }
 
 let frameTicker = -1;
-function gameLoop(delta){
+function gameLoop(){
     if(++frameTicker%6!=0)
         return;
     frameTicker = frameTicker%6;
@@ -167,10 +166,13 @@ function reset(){
     for(i=0; i<gridSizeX*gridSizeY; i++){
         gameScene.removeChild(board[i]);
     }
+    gameScene.removeChild(bg);
+    gameOver.removeChild(flash);
     gameOver.visible = false;
     gameScene.visible = true;
     win = 0;
     frameTicker = -1;
+    app.ticker.remove(gameLoop);
     redTurn = true;
     board = [];
     turnedOn = [];

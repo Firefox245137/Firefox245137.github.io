@@ -61,7 +61,7 @@ function setup(){
     message.y = app.stage.height / 2 - 32;
     gameOver.addChild(message);
     
-    app.ticker.add((delta) => gameLoop(delta));
+    app.ticker.add(gameLoop);
 }
 
 function clickIntermediate(x, y){
@@ -101,7 +101,7 @@ function swap(x, y){
 }
 
 
-function gameLoop(delta){
+function gameLoop(){
     // console.log(turnedOn);
     let win = true;
     for(i=0; i<turnedOn.length; i++){
@@ -124,6 +124,7 @@ function reset(randomize){
     }
     if(!randomize)
         seed -= seedCalled;
+    app.ticker.remove(gameLoop);
     seedCalled = 0;
     board = [];
     turnedOn = [];

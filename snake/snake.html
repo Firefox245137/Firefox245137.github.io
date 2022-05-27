@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="snakestyles.css">
+    <title>Snake</title>
+    <script src="../pixi/pixi.js"></script>
+    <script src="../sound/howler.js"></script>
+</head>
+
+<body>
+    <h1>Snake</h1>
+    <div class="buttons">
+        <button type="button" onclick="uhreset()">Reset game</button>
+    </div>
+    
+    <script type="text/javascript" src="snake.js">
+        let type = "WebGL";
+        if (!PIXI.utils.isWebGLSupported()) {
+            type = "canvas";
+        }
+    </script>
+    
+    <form class="forms" action="javascript:changeGridSizeHTML()">
+        <label for="size">Grid Size:</label><br>
+        <input class="margright" type="number" id="size" name="size" value=21><br>
+        <label for="px">Grid Box Pixels:</label><br>
+        <input class="margright" type="number" id="px" name="px" value=30><br>
+        <input type="submit" value="Resize">
+    </form>
+    <a href="../index.html">Back to home</a>
+    <script>
+        function uhreset(){
+            reset();
+        }
+
+        function changeGridSizeHTML(){
+            console.log("hog");
+            changeGridSize(document.getElementById("size").value, document.getElementById("px").value);
+        }
+
+        function setRandom(){
+
+        }
+    </script>
+</body>
+</html>

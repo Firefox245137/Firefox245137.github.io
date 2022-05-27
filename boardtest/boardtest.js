@@ -38,7 +38,7 @@ function setup(){
         app.stage.addChild(board[i]);
     }
     
-    app.ticker.add((delta) => gameLoop(delta));
+    app.ticker.add(gameLoop);
 }
 
 function clickFunc(e){
@@ -56,7 +56,7 @@ function clickFunc(e){
 }
 
 
-function gameLoop(delta){
+function gameLoop(){
     if(animate){
         let x = Math.floor(Math.random()*10), y = Math.floor(random()*10);
         board[y*gridSize + x].beginFill(Math.floor(Math.random() * 0xFFFFFF));
@@ -69,6 +69,7 @@ function reset(){
     for(i=0; i<gridSize*gridSize; i++){
         app.stage.removeChild(board[i]);
     }
+    app.ticker.remove(gameLoop);
     board = [];
     turnedOn = [];
     loader
