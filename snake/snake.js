@@ -14,6 +14,10 @@ function random(){
     return x - Math.floor(x);
 }
 
+var sound = new Howl({
+    src: ['pickupApple.wav']
+});
+  
 let style = new PIXI.TextStyle({
     fontFamily: "Futura",
     fontSize: 64,
@@ -109,6 +113,7 @@ function setup(){
 
 //Moves the apple to a non-player square
 function moveApple(){
+    sound.play();
     let check;
     do{
         check = false;
