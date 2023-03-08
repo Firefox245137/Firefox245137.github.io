@@ -21,7 +21,7 @@ function getMembers(channel){
 
 async function doPubSub() {
     await realtime.connection.once("connected");
-    
+    historySync = [[],[],[]]
     let channel = realtime.channels.get('big-zoo-all');
     console.log("Connected to Ably!");
 
@@ -57,6 +57,7 @@ async function doPubSub() {
     
 
     PIXI.utils.sayHello();
+    
     const Sprite = PIXI.Sprite;
     const loader = PIXI.Loader.shared;
     const TextureCache = PIXI.utils.TextureCache;
@@ -64,7 +65,7 @@ async function doPubSub() {
 
     const app = new PIXI.Application({width: 601, height: 601});
 
-    historySync = [[],[],[]]
+    
     document.body.appendChild(app.view);
 
     let currdate = new Date();
@@ -120,17 +121,21 @@ async function doPubSub() {
             board[y*gridSize + x].endFill();
         }   
     }
-
-    function reset(){
+    channel.subscribe('reset', (msg) =>{
         for(i=0; i<gridSize*gridSize; i++){
             app.stage.removeChild(board[i]);
         }
         app.ticker.remove(gameLoop);
         board = [];
         turnedOn = [];
+        historySync = [[],[],[]]
         loader
             .load(setup);
-    }   
+    })
+    document.getElementById("resetbutton").addEventListener("click", function(){
+        channel.publish('reset', null);
+    })
+    
 }
 
 doPubSub();
