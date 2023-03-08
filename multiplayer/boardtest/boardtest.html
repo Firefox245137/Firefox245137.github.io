@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="boardstyles.css">
+    <title>Testing</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico?">
+    <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
+    <script src="../../pixi/pixi.js"></script>
+</head>
+
+<body>
+    <h1>Colorful board test omega wow</h1>
+    <!-- <div class="buttons">
+        <button class="button1" type="button" onclick="uhreset()">Reset board</button>
+        <button type="button" onclick="setRandom()">Animation</button>
+    </div> -->
+    <h3 id="message">Loading...</h3>
+    <script type="text/javascript" src="game.js">
+        let type = "WebGL";
+        if (!PIXI.utils.isWebGLSupported()) {
+            type = "canvas";
+        }
+    </script>
+    <a href="../../index.html">Back to home</a>
+    <script>
+        function uhreset(){
+            reset();
+        }
+
+        function setRandom(){
+            animate = !animate;
+        }
+    </script>
+</body>
+</html>
