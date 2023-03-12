@@ -1,0 +1,27 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    height: 90vh;
+}
+
+span{
+    font-size: 150%;
+}
+
+.buttons{
+    justify-content: center;
+    display: flex;
+    /* flex: auto; */
+    flex-direction: row;
+    margin-bottom: 5px;
+}
+
+.player{
+    color: yellow;
+    /* background-color: black; */
+    -webkit-text-stroke-width: 1px;
+    -webkit-text-stroke-color: black;
+}
+

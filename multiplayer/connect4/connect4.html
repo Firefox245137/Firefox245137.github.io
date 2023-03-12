@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="connect4styles.css">
+    <title>Connect 4</title>
+    <link rel="icon" type="image/x-icon" href="../../favicon.ico?">
+    <script src="../../pixi/pixi.js"></script>
+    <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
+</head>
+
+<body>
+    <h1>Connect 4</h1>
+    <div class="buttons">
+        <button type="button" id="resetbutton">Reset board</button>
+    </div>
+    <div id="wait">
+        <span>Waiting for another player</span>
+    </div>
+    <div id="play" hidden>
+        <div>
+            <span>You are playing as: </span>
+            <span class="player">...</span>
+        </div>
+        <div id="divturn">
+            <span>It is currently </span>
+            <span id="spanturn" class="player">...</span>
+            <span>'s turn</span>
+
+        </div>
+        <div id="win" hidden>
+            <span id="winner" class="player">...</span>
+            <span> wins!</span>
+        </div>
+    </div>
+    <script type="text/javascript" src="connect4.js">
+        let type = "WebGL";
+        if (!PIXI.utils.isWebGLSupported()) {
+            type = "canvas";
+        }
+    </script>
+    <a href="../../index.html">Back to home</a>
+</body>
+</html>
