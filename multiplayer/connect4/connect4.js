@@ -64,6 +64,7 @@ async function doPubSub() {
     await channel.presence.subscribe('leave', (member) => {
         console.log(`User ${member.clientId} has left the channel.`);
         getMembers(channel);
+        reset(true);
     });
 
     PIXI.utils.sayHello();
@@ -238,7 +239,7 @@ async function doPubSub() {
 
     }
 
-    channel.subscribe("reset", (msg)=>{
+    function reset(leaver){
         for(i=0; i<gridSizeX*gridSizeY; i++){
             gameScene.removeChild(board[i]);
         }
@@ -251,16 +252,27 @@ async function doPubSub() {
         app.ticker.remove(gameLoop);
         myTurn = (myTurn && redTurn) || (!myTurn && !redTurn) ? true : false;
         redTurn = true;
-        let toStr = (redTurn) ? "Red" : "Yellow";
-        document.getElementById("spanturn").innerHTML = toStr;
-        document.getElementById("spanturn").style.color = toStr.toLowerCase();
+        document.getElementById("spanturn").innerHTML = "Red";
+        document.getElementById("spanturn").style.color = "red";
+        document.getElementById("divturn").hidden = false;
+        document.getElementById("win").hidden = true;
+        if(leaver){
+            document.getElementById("play").hidden = true;
+            document.getElementById("wait").hidden = false;
+            myTurn = false;
+        }
         board = [];
         turnedOn = [];
         loader
             .load(setup);
+    }
+
+    channel.subscribe("reset", (msg)=>{
+        reset(false);
     });
     document.getElementById("resetbutton").addEventListener("click", function(){
-        console.log("hey fuckhead");
+        if(document.getElementById("play").hidden)
+            return;
         channel.publish("reset", null);
     });
     
